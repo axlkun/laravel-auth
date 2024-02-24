@@ -51,7 +51,7 @@ class AuthController extends Controller
 
         $cookie = Cookie::forget('jwt');
 
-        response([
+        return response([
             'message' => 'success'
         ])->withCookie($cookie);
     }
