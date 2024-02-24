@@ -25,7 +25,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        if(!Auth::attempt($request->only('email','password'))){
+        if (!Auth::attempt($request->only('email', 'password'))) {
             return response([
                 'message' => 'Invalid credentials!'
             ], Response::HTTP_UNAUTHORIZED);
@@ -35,10 +35,10 @@ class AuthController extends Controller
 
         $token = $user->createToken('token')->plainTextToken;
 
-        $cookie = cookie('jwt',$token, 60 * 24); //1 day
+        $cookie = cookie('jwt', $token, 60 * 24); // 1 day
 
         return response([
-            'message' => 'success'
+            'message' => $token
         ])->withCookie($cookie);
     }
 
